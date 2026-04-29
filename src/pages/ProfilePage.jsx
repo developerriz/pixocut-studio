@@ -2,7 +2,11 @@ import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { updateUser, updateUserPassword, updateUserPhoto } from "../api/authApi";
+import {
+  updateUser,
+  updateUserPassword,
+  updateUserPhoto,
+} from "../api/authApi";
 
 export default function ProfilePage({
   user,
@@ -148,8 +152,7 @@ export default function ProfilePage({
             Profile Settings
           </h1>
           <p className="mt-2 max-w-[680px] text-sm text-[#A9A2C8] md:text-base">
-            Login ke baad yahan se aap apni profile details, password aur photo
-            update kar sakte ho.
+            Edit your profile details, change your password, and update your profile photo here.
           </p>
         </div>
 
@@ -161,6 +164,7 @@ export default function ProfilePage({
               {avatarPreview ? (
                 <img
                   src={avatarPreview}
+                  loading="lazy"
                   alt="Profile avatar"
                   className="h-28 w-28 rounded-full border border-violet-400/40 object-cover"
                 />
@@ -212,7 +216,10 @@ export default function ProfilePage({
                   type="email"
                   value={detailsForm.email}
                   onChange={(event) =>
-                    setDetailsForm({ ...detailsForm, email: event.target.value })
+                    setDetailsForm({
+                      ...detailsForm,
+                      email: event.target.value,
+                    })
                   }
                 />
 
@@ -221,7 +228,10 @@ export default function ProfilePage({
                   placeholder="Phone"
                   value={detailsForm.phone}
                   onChange={(event) =>
-                    setDetailsForm({ ...detailsForm, phone: event.target.value })
+                    setDetailsForm({
+                      ...detailsForm,
+                      phone: event.target.value,
+                    })
                   }
                 />
 
@@ -297,6 +307,7 @@ export default function ProfilePage({
                 Change Password
               </button>
             </form>
+
           </div>
         </div>
       </section>

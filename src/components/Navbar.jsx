@@ -6,15 +6,17 @@ import { toast } from "react-toastify";
 
 function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const navItems = ["Features", "Pricing", "Gallery", "API"];
+  // const navItems = ["Features", "Pricing", "Gallery", "API"];
+  const navItems = ["Features", "Gallery"];
   const routeMap = {
     Home: "/",
     Features: "/features",
-    Pricing: "/pricing",
+    // Pricing: "/pricing",
     Gallery: "/gallery",
-    API: "/api",
+    // API: "/api",
   };
 
   const handleNavClick = (event, label) => {
@@ -43,8 +45,21 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
 
     onLogout?.();
     setIsMenuOpen(false);
+    setIsProfileMenuOpen(false);
     toast.success("Logged out successfully");
     navigate("/");
+  };
+
+  const goToProfileSettings = () => {
+    setIsMenuOpen(false);
+    setIsProfileMenuOpen(false);
+    navigate("/profile");
+  };
+
+  const goToMyActivity = () => {
+    setIsMenuOpen(false);
+    setIsProfileMenuOpen(false);
+    navigate("/my-activity");
   };
 
   return (
@@ -55,14 +70,19 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
           className="flex items-center gap-2.5"
           onClick={(event) => handleNavClick(event, "Home")}
         >
-          <div className="flex h-[34px] w-[34px] items-center justify-center rounded-[9px] bg-gradient-to-br from-violet-600 to-blue-600 font-syne text-base font-extrabold text-white">
-            <FiStar className="h-[18px] w-[18px]" />
+          <div className="flex h-[34px] w-[34px] items-center justify-center rounded-[9px] font-syne text-base font-extrabold text-white">
+            <img src="https://toolsbyprabhat.com/images/icons/favicon-pixocut.png" alt="" />
           </div>
-          <span className="font-syne text-lg font-extrabold text-[#F0EEFF]">
-            PixoCut
-            <span className="bg-gradient-to-br from-violet-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              {" "}
-              AI
+          <span className="flex items-center gap-2 font-syne text-lg font-extrabold text-[#F0EEFF]">
+            <span>
+              PixoCut
+              <span className="bg-gradient-to-br from-violet-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                {" "}
+                Studio
+              </span>
+            </span>
+            <span className="rounded-[9px] border border-violet-400/30 bg-violet-500/10 px-2 leading-[1.5] font-plus text-[8px] font-normal uppercase tracking-wider text-violet-200">
+              Beta
             </span>
           </span>
         </button>
@@ -82,15 +102,18 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
 
         <div className="hidden items-center gap-2.5 lg:flex">
           {currentUser ? (
-            <>
+            <div className="relative">
               <button
                 type="button"
-                onClick={() => navigate("/profile")}
+                onClick={() => setIsProfileMenuOpen((prev) => !prev)}
                 className="inline-flex items-center gap-2 rounded-full border border-violet-500/25 px-3.5 py-2 text-sm text-[#F0EEFF] transition hover:border-violet-400/60 hover:bg-violet-500/10"
+                aria-expanded={isProfileMenuOpen}
+                aria-haspopup="menu"
               >
                 {currentUser.photoUrl ? (
                   <img
                     src={currentUser.photoUrl}
+                    loading="lazy"
                     alt="Profile"
                     className="h-8 w-8 rounded-full border border-violet-400/40 object-cover"
                   />
@@ -101,14 +124,33 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
                 )}
                 <span className="max-w-[130px] truncate">{displayName}</span>
               </button>
-              <button
-                type="button"
-                className="rounded-full border border-violet-500/25 px-5 py-2.5 text-sm font-medium text-[#8B85A8] transition hover:border-violet-400/60 hover:bg-violet-500/10 hover:text-[#F0EEFF]"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </>
+
+              {isProfileMenuOpen && (
+                <div className="absolute right-0 top-[calc(100%+10px)] z-50 w-52 rounded-2xl border border-violet-500/25 bg-[#100d24]/95 p-2.5 shadow-[0_16px_60px_rgba(8,6,20,.55)] backdrop-blur-xl">
+                  <button
+                    type="button"
+                    onClick={goToProfileSettings}
+                    className="w-full rounded-xl px-3 py-2 text-left text-sm text-[#F0EEFF] transition hover:bg-violet-500/15"
+                  >
+                    Profile Settings
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goToMyActivity}
+                    className="mt-1 w-full rounded-xl px-3 py-2 text-left text-sm text-[#F0EEFF] transition hover:bg-violet-500/15"
+                  >
+                    My Activity
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="mt-1 w-full rounded-xl px-3 py-2 text-left text-sm text-rose-200 transition hover:bg-rose-500/10"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <button
@@ -161,25 +203,41 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
 
           <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
             {currentUser ? (
-              <>
+              <div className="w-full space-y-2">
                 <button
                   type="button"
                   className="rounded-full border border-violet-500/25 px-5 py-2.5 text-sm font-medium text-[#F0EEFF] transition hover:border-violet-400/60 hover:bg-violet-500/10"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    navigate("/profile");
-                  }}
+                  onClick={() => setIsProfileMenuOpen((prev) => !prev)}
                 >
-                  Profile
+                  Profile Options
                 </button>
-                <button
-                  type="button"
-                  className="rounded-full border border-violet-500/25 px-5 py-2.5 text-sm font-medium text-[#8B85A8] transition hover:border-violet-400/60 hover:bg-violet-500/10 hover:text-[#F0EEFF]"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </>
+
+                {isProfileMenuOpen && (
+                  <div className="grid gap-2">
+                    <button
+                      type="button"
+                      className="rounded-full border border-violet-500/25 px-5 py-2.5 text-sm font-medium text-[#F0EEFF] transition hover:border-violet-400/60 hover:bg-violet-500/10"
+                      onClick={goToProfileSettings}
+                    >
+                      Profile Settings
+                    </button>
+                    <button
+                      type="button"
+                      className="rounded-full border border-violet-500/25 px-5 py-2.5 text-sm font-medium text-[#F0EEFF] transition hover:border-violet-400/60 hover:bg-violet-500/10"
+                      onClick={goToMyActivity}
+                    >
+                      My Activity
+                    </button>
+                    <button
+                      type="button"
+                      className="rounded-full border border-violet-500/25 px-5 py-2.5 text-sm font-medium text-[#8B85A8] transition hover:border-violet-400/60 hover:bg-violet-500/10 hover:text-[#F0EEFF]"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <>
                 <button

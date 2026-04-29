@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { toast } from "react-toastify";
 import API from "../api/axios";
 import { removeBackgroundImage } from "../api/authApi";
+import { addUserActivityItem } from "../utils/userActivity";
 import {
   FiCheckCircle,
   FiImage,
@@ -11,7 +12,7 @@ import {
   FiUpload,
 } from "react-icons/fi";
 
-function UploadZone() {
+function UploadZone({ currentUser }) {
   const [drag, setDrag] = useState(false);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -92,22 +93,111 @@ function UploadZone() {
         throw new Error("Job ID not received");
       }
 
+      // const pollStatus = (jobId) => {
+      //   const interval = setInterval(async () => {
+      //     try {
+      //       const res = await API.get(`/api/v1/bg-remove-status/${jobId}`);
+      //       // console.log("FULL RESPONSE:", res.data);
+      //       const status = res.data.status?.toLowerCase();
+
+      //       // console.log("Polling status:", status);
+
+      //       if (status === "completed") {
+      //         clearInterval(interval);
+
+      //         const processedUrl = res.data.result_url;
+      //         setResultUrl(processedUrl);
+      //         setIsProcessing(false);
+
+      //         if (processedUrl) {
+      //           addUserActivityItem(currentUser, {
+      //             id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      //             fileName: selectedFile?.name || "generated-image",
+      //             imageUrl: processedUrl,
+      //             createdAt: new Date().toISOString(),
+      //           });
+      //         }
+
+      //         // 🔥 UPDATE LOADING → SUCCESS
+      //         toast.update(processingToastRef.current, {
+      //           render: "Background removed successfully 🎉",
+      //           type: "success",
+      //           isLoading: false,
+      //           autoClose: 2500,
+      //         });
+
+      //         processingToastRef.current = null;
+
+      //         console.log("✅ DONE");
+      //         return;
+      //       }
+
+      //       if (status === "failed") {
+      //         clearInterval(interval);
+      //         setIsProcessing(false);
+
+      //         toast.update(processingToastRef.current, {
+      //           render: "Processing failed ❌",
+      //           type: "error",
+      //           isLoading: false,
+      //           autoClose: 4000,
+      //         });
+
+      //         processingToastRef.current = null;
+
+      //         return;
+      //       }
+      //     } catch (err) {
+      //       clearInterval(interval);
+      //       setIsProcessing(false);
+      //       console.error(err);
+      //     }
+      //   }, 3000);
+      // };
+
       const pollStatus = (jobId) => {
+        let attempts = 0;
+        const MAX_ATTEMPTS = 20; // ~60 seconds (20 * 3s)
+
         const interval = setInterval(async () => {
           try {
-            const res = await API.get(`/api/v1/bg-remove-status/${jobId}`);
-            // console.log("FULL RESPONSE:", res.data);
-            const status = res.data.status?.toLowerCase();
+            attempts++;
 
-            // console.log("Polling status:", status);
+            // ⛔ Timeout condition
+            if (attempts > MAX_ATTEMPTS) {
+              clearInterval(interval);
+              setIsProcessing(false);
+
+              toast.update(processingToastRef.current, {
+                render: "Request timed out ⏱️",
+                type: "error",
+                isLoading: false,
+                autoClose: 4000,
+              });
+
+              processingToastRef.current = null;
+              return;
+            }
+
+            const res = await API.get(`/api/v1/bg-remove-status/${jobId}`);
+            const status = res.data.status?.toLowerCase();
 
             if (status === "completed") {
               clearInterval(interval);
 
-              setResultUrl(res.data.result_url);
+              const processedUrl = res.data.result_url;
+              setResultUrl(processedUrl);
               setIsProcessing(false);
 
-              // 🔥 UPDATE LOADING → SUCCESS
+              if (processedUrl) {
+                addUserActivityItem(currentUser, {
+                  id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                  fileName: selectedFile?.name || "generated-image",
+                  imageUrl: processedUrl,
+                  createdAt: new Date().toISOString(),
+                });
+              }
+
               toast.update(processingToastRef.current, {
                 render: "Background removed successfully 🎉",
                 type: "success",
@@ -116,8 +206,6 @@ function UploadZone() {
               });
 
               processingToastRef.current = null;
-
-              console.log("✅ DONE");
               return;
             }
 
@@ -133,7 +221,6 @@ function UploadZone() {
               });
 
               processingToastRef.current = null;
-
               return;
             }
           } catch (err) {
@@ -272,6 +359,7 @@ function UploadZone() {
               <div className="mb-2.5 text-xs text-[#8B85A8]">Original</div>
               <img
                 src={previewUrl ?? undefined}
+                loading="lazy"
                 alt="Original upload preview"
                 className="aspect-[4/3] w-full rounded-[14px] object-cover"
               />
@@ -284,6 +372,7 @@ function UploadZone() {
                 </div>
                 <img
                   src={resultUrl}
+                  loading="lazy"
                   alt="Background removed preview"
                   className="aspect-[4/3] w-full rounded-[14px] object-cover"
                 />
@@ -320,7 +409,7 @@ function UploadZone() {
 
           {isProcessing && (
             <div className="text-xs text-[#8B85A8]">
-              Working with remove.bg. This can take a few seconds.
+              Working with Precision. This can take a few seconds.
             </div>
           )}
         </div>
@@ -336,7 +425,7 @@ function UploadZone() {
             Drop your image here
           </p>
           <p className="mb-4 text-sm text-[#8B85A8]">
-            PNG, JPG, WEBP · up to 20MB
+            PNG, JPG, WEBP · up to 10MB
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             {["AI-Powered", "HD Quality", "Instant"].map((label) => (

@@ -3,7 +3,12 @@ import Footer from "../components/Footer";
 import CtaSection from "../sections/CtaSection";
 import FeaturesSection from "../sections/FeaturesSection";
 
-export default function FeaturesPage({ onSignIn, onSignUp, currentUser, onLogout }) {
+export default function FeaturesPage({
+  onSignIn,
+  onSignUp,
+  currentUser,
+  onLogout,
+}) {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#06050F] font-plus text-[#F0EEFF]">
       <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_15%_10%,rgba(79,70,229,.18)_0%,transparent_70%),radial-gradient(ellipse_60%_50%_at_85%_20%,rgba(124,58,237,.14)_0%,transparent_65%),radial-gradient(ellipse_70%_60%_at_50%_80%,rgba(37,99,235,.12)_0%,transparent_65%),radial-gradient(ellipse_50%_40%_at_90%_90%,rgba(168,85,247,.10)_0%,transparent_60%)]" />

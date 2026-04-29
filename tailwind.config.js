@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        changa: ['"Changa One"', 'cursive'],
         syne: ["Syne", "sans-serif"],
         plus: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
       },

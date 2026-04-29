@@ -1,10 +1,12 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://unemitting-dalilah-inefficaciously.ngrok-free.dev",
+  // baseURL: "https://unemitting-dalilah-inefficaciously.ngrok-free.dev",
+  baseURL: "https://api.toolsbyprabhat.com",
   headers: {
-    "ngrok-skip-browser-warning": "69420", // 🔥 ADD THIS
-    "X-App-Client": "bgremover-frontend-v1"
+    withCredentials: true,
+    // "ngrok-skip-browser-warning": "69420", // 🔥 ADD THIS
+    "X-App-Client": "bgremover-frontend-v1",
   },
   // ❌ remove this
   // withCredentials: true,
@@ -30,7 +32,7 @@ API.interceptors.response.use(
       console.log("Unauthorized - token removed");
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default API;

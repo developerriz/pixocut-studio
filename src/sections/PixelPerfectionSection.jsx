@@ -36,7 +36,7 @@ function PixelPerfectionSection() {
   ];
 
   return (
-    <section className="relative z-10 mx-auto w-full max-w-[1280px] px-10 py-[4.5rem]">
+    <section className="relative z-10 mx-auto w-full max-w-[1280px] px-5 py-[4.5rem]">
       {/* Heading */}
       <div className="mb-12 text-center">
         <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-600/10 px-3.5 py-1.5 text-xs font-medium text-violet-300">
@@ -154,6 +154,7 @@ function PixelPerfectionSection() {
               <img
                 className="pixel-preview-original absolute inset-0 h-full w-full object-cover object-center"
                 src={useCase.original}
+                loading="lazy"
                 alt={useCase.title}
               />
 
@@ -167,6 +168,7 @@ function PixelPerfectionSection() {
               <img
                 className="pixel-preview-processed absolute inset-0 h-full w-full object-cover object-center opacity-0"
                 src={useCase.processed}
+                loading="lazy"
                 alt={`${useCase.title} - Processed`}
               />
 

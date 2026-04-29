@@ -25,7 +25,7 @@ export default function HomePage({
       />
 
       <HeroSection />
-      <UploadSection />
+      <UploadSection currentUser={currentUser} />
       <PixelPerfectionSection />
       <ProcessSection />
       <CtaSection onSignUp={onSignUp} />

@@ -1,31 +1,32 @@
-import { FaDiscord, FaGithub } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 
 function Footer() {
   const productLinks = [
     "BG Remover",
-    "Image Upscaler",
-    "Pricing",
-    "API",
-    "Changelog",
+    "Image Upscaler (Coming Soon)",
+    // "Pricing",
+    // "API",
+    // "Changelog",
   ];
-  const companyLinks = ["About", "Blog", "Contact", "Careers", "Press"];
-  const bottomLinks = ["Privacy", "Terms", "API Docs", "Status"];
+  const companyLinks = ["About", "Blog", "Contact"];
+  const bottomLinks = ["Privacy", "Terms"];
 
   const socialIcons = [
     {
-      label: "Twitter",
-      Icon: FaXTwitter,
+      label: "Instagram",
+      href: "https://www.instagram.com/toolsbyprabhat?igsh=MWo3OGtpNTNpd2czbA==",
+      hrefLabel: "@toolsbyprabhat",
+      Icon: FaInstagram,
     },
-    {
-      label: "GitHub",
-      Icon: FaGithub,
-    },
-    {
-      label: "Discord",
-      Icon: FaDiscord,
-    },
+    // {
+    //   label: "GitHub",
+    //   Icon: FaGithub,
+    // },
+    // {
+    //   label: "Discord",
+    //   Icon: FaDiscord,
+    // },
   ];
 
   const linkClass =
@@ -39,7 +40,7 @@ function Footer() {
         color: "#8B85A8",
       }}
     >
-      <div className="mx-auto w-full max-w-[1280px] px-10">
+      <div className="mx-auto w-full max-w-[1280px] px-5">
         <div className="grid gap-y-10 md:grid-cols-2 md:gap-x-12 xl:grid-cols-[1.6fr_0.7fr_0.7fr_1.1fr] xl:gap-x-12">
           {/* Brand */}
           <div>
@@ -49,7 +50,7 @@ function Footer() {
             >
               PixoCut{" "}
               <span className="bg-gradient-to-br from-violet-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                AI
+                Studio
               </span>
             </h3>
             <p
@@ -71,14 +72,16 @@ function Footer() {
             </div>
             <div className="mt-5 flex gap-2.5">
               {socialIcons.map((s) => (
-                <button
+                <a
                   key={s.label}
-                  type="button"
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={s.label}
                   className="flex h-8 w-8 items-center justify-center rounded-lg border border-violet-500/25 bg-white/5 transition-colors hover:bg-violet-500/20"
                 >
                   <s.Icon className="h-4 w-4 text-[#8B85A8]" />
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -184,7 +187,7 @@ function Footer() {
           className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-violet-500/15 pt-5 text-xs md:flex-row md:items-center"
           style={{ color: "#6B6585" }}
         >
-          <span>© 2026 PixelCut AI · All rights reserved</span>
+          <span>© 2026 PixelCut Studio · All rights reserved</span>
           <div className="flex items-center gap-6">
             {bottomLinks.map((item) => (
               <a

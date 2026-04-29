@@ -28,7 +28,7 @@ function ProcessSection() {
   };
 
   return (
-    <section className="relative z-10 mx-auto w-full max-w-[1280px] px-10 py-16 text-center">
+    <section className="relative z-10 mx-auto w-full max-w-[1280px] px-5 py-16 text-center">
       <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-600/10 px-4 py-1.5 text-xs font-medium text-violet-300">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
         How it works
@@ -41,10 +41,10 @@ function ProcessSection() {
         </span>
       </h2>
 
-      <div className="mx-auto grid max-w-[960px] items-center md:grid-cols-[1fr_48px_1fr_48px_1fr]">
+      <div className="mx-auto grid max-w-[960px] items-center md:grid-cols-[1fr_48px_1fr_48px_1fr] ">
         {steps.map((step, index) => (
           <div key={step.n} className="contents">
-            <div className="rounded-[20px] border border-violet-500/20 bg-[rgba(18,15,40,0.75)] px-7 py-9 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/45">
+            <div className="mb-5 rounded-[20px] border border-violet-500/20 bg-[rgba(18,15,40,0.75)] px-7 py-9 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/45">
               <p
                 className="mb-4 text-[10.5px] font-semibold uppercase tracking-widest"
                 style={{ color: "rgba(167,139,250,0.5)" }}

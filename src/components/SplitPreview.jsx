@@ -41,6 +41,7 @@ function SplitPreview() {
           >
             <img
               src={heroImage}
+              loading="lazy"
               alt="Original portrait"
               className="absolute inset-0 h-full w-full object-cover object-top"
             />
@@ -52,6 +53,7 @@ function SplitPreview() {
           >
             <img
               src={heroImageNoBg}
+              loading="lazy"
               alt="Background removed portrait"
               className="absolute inset-0 h-full w-full object-cover object-top"
             />

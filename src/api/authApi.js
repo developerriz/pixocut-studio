@@ -1,7 +1,7 @@
 import API from "./axios";
 
 // CSRF
-// const csrf = () => API.get("/sanctum/csrf-cookie");
+const csrf = () => API.get("/sanctum/csrf-cookie");
 
 // REGISTER USER
 export const registerUser = async (data) => {
@@ -120,7 +120,11 @@ export const checkStatus = async (jobId) => {
   const res = await API.get(`/api/v1/bg-remove-status/${jobId}`);
   return res.data;
 };
-export const pollForResult = async (jobId, interval = 2000, timeout = 60000) => {
+export const pollForResult = async (
+  jobId,
+  interval = 2000,
+  timeout = 60000,
+) => {
   const startTime = Date.now();
 
   return new Promise((resolve, reject) => {
@@ -212,7 +216,6 @@ export const deleteUser = async () => {
     throw error;
   }
 };
-
 
 export const getCurrentUser = async () => {
   const res = await API.get("/api/v1/user");

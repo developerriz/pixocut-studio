@@ -1,0 +1,20 @@
+{
+  "out": "./src/bones",
+  "breakpoints": [375, 640, 768, 1024, 1280, 1536],
+  "wait": 900,
+  "animate": "shimmer",
+  "transition": 300,
+  "routes": [
+    "/",
+    "/api",
+    "/features",
+    "/gallery",
+    "/pricing",
+    "/login",
+    "/register",
+    "/register/verify-otp",
+    "/forgot-password",
+    "/forgot-password/verify-otp",
+    "/profile"
+  ]
+}

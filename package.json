@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bones:build": "boneyard-js build",
+    "bones:watch": "boneyard-js build --watch"
   },
   "dependencies": {
     "@react-oauth/google": "^0.13.5",
     "axios": "^1.15.0",
+    "boneyard-js": "^1.8.1",
     "gsap": "^3.12.5",
     "ngrok": "^5.0.0-beta.2",
     "react": "^18.3.1",

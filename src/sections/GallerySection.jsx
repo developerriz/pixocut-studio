@@ -90,6 +90,7 @@ function SplitHoverCard({ item }) {
       <div className="relative overflow-hidden">
         <img
           src={item.original}
+          loading="lazy"
           alt=""
           aria-hidden="true"
           className="block w-full opacity-0"
@@ -103,6 +104,7 @@ function SplitHoverCard({ item }) {
         >
           <img
             src={item.original}
+            loading="lazy"
             alt={`${item.title} original`}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
@@ -114,6 +116,7 @@ function SplitHoverCard({ item }) {
         >
           <img
             src={item.processed}
+            loading="lazy"
             alt={`${item.title} background removed`}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
