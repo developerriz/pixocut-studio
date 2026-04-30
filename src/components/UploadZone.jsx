@@ -425,7 +425,7 @@ function UploadZone({ currentUser }) {
             Drop your image here
           </p>
           <p className="mb-4 text-sm text-[#8B85A8]">
-            PNG, JPG, WEBP · up to 10MB
+            PNG, JPG, WEBP · up to 20MB
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             {["AI-Powered", "HD Quality", "Instant"].map((label) => (

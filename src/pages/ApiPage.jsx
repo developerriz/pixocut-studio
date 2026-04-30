@@ -32,7 +32,7 @@ export default function ApiPage({ onSignIn, onSignUp, currentUser, onLogout }) {
         onLogout={onLogout}
       />
 
-      <section className="relative z-10 mx-auto w-full max-w-[1280px] px-10 py-16">
+      <section className="page-shell relative z-10 py-16">
         <div className="mb-10 text-center">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-600/15 px-3.5 py-1.5 text-xs text-violet-300">
             Developer API

@@ -40,7 +40,7 @@ function Footer() {
         color: "#8B85A8",
       }}
     >
-      <div className="mx-auto w-full max-w-[1280px] px-5">
+      <div className="page-shell">
         <div className="grid gap-y-10 md:grid-cols-2 md:gap-x-12 xl:grid-cols-[1.6fr_0.7fr_0.7fr_1.1fr] xl:gap-x-12">
           {/* Brand */}
           <div>

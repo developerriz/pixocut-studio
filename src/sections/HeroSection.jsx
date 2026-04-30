@@ -38,9 +38,9 @@ function HeroSection() {
   }, []);
 
   return (
-    <section className="relative z-10 mx-auto grid w-full max-w-[1280px] grid-cols-1 items-center gap-16 px-5 pb-16 pt-16 lg:grid-cols-2 lg:gap-28 xl:gap-32">
+    <section className="page-shell relative z-10 grid grid-cols-1 items-center gap-16 pb-16 pt-16 lg:grid-cols-2 lg:gap-28 xl:gap-32">
       {/* Left Side */}
-      <div className="max-w-[520px] font-changa xl:-ml-16">
+      <div className="max-w-[520px] font-changa">
         <div className="mb-5 inline-flex w-fit animate-[float_4s_ease-in-out_infinite] items-center gap-1 rounded-full border border-violet-500/30 bg-violet-600/15 px-3.5 py-1.5 text-xs text-violet-300">
           100% Free for Early Users
         </div>
@@ -90,7 +90,7 @@ function HeroSection() {
       </div>
 
       {/* Right Side */}
-      <div className="relative flex w-full justify-center lg:justify-end xl:translate-x-16">
+      <div className="relative flex w-full justify-center lg:justify-end">
         {/* Glow */}
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,.25)_0%,transparent_70%)] blur-[90px]" />
 

@@ -1,7 +1,7 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import CtaSection from "../sections/CtaSection";
-import PricingSection from "../sections/PricingSection";
+// import Navbar from "../components/Navbar";
+// import Footer from "../components/Footer";
+// import CtaSection from "../sections/CtaSection";
+// import PricingSection from "../sections/PricingSection";
 
 export default function PricingPage({
   onSignIn,
@@ -21,7 +21,7 @@ export default function PricingPage({
         onLogout={onLogout}
       />
 
-      <PricingSection onSignUp={onSignUp} />
+      {/* <PricingSection onSignUp={onSignUp} /> */}
       {/* <CtaSection onSignUp={onSignUp} /> */}
       <Footer />
     </div>

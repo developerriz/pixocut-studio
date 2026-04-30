@@ -28,7 +28,7 @@ function ProcessSection() {
   };
 
   return (
-    <section className="relative z-10 mx-auto w-full max-w-[1280px] px-5 py-16 text-center">
+    <section className="page-shell relative z-10 py-16 text-center">
       <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-600/10 px-4 py-1.5 text-xs font-medium text-violet-300">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
         How it works

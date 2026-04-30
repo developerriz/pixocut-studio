@@ -64,7 +64,7 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-violet-500/15 bg-[#06050F]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-10">
+      <div className="page-shell-wide flex h-16 items-center justify-between">
         <button
           type="button"
           className="flex items-center gap-2.5"
@@ -187,7 +187,7 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
       </div>
 
       {isMenuOpen && (
-        <div className="border-t border-violet-500/20 px-10 py-4 lg:hidden">
+        <div className="page-shell-wide border-t border-violet-500/20 py-4 lg:hidden">
           <div className="flex flex-col gap-3">
             {navItems.map((label) => (
               <a

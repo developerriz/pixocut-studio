@@ -1,6 +1,6 @@
 function CtaSection({ onSignUp }) {
   return (
-    <section className="relative z-10 mx-auto w-full max-w-[1280px] px-5 py-16">
+    <section className="page-shell relative z-10 py-16">
       <div className="relative overflow-hidden rounded-[28px] border border-violet-500/25 bg-[linear-gradient(135deg,rgba(79,70,229,.15),rgba(124,58,237,.1))] px-10 py-12 text-center backdrop-blur-xl">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(124,58,237,.15)_0%,transparent_70%)] blur-[80px]" />
         <h2 className="relative mb-4 font-syne text-[clamp(25px,3.5vw,40px)] font-extrabold text-[#F0EEFF]">
