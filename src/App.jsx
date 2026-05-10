@@ -22,6 +22,9 @@ import PricingPage from "./pages/PricingPage";
 import ProfilePage from "./pages/ProfilePage";
 import Register from "./pages/Register";
 import RegisterOtp from "./pages/RegisterOtp";
+import About from "./pages/About";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsPage from "./pages/TermsPage";
 
 const LOCAL_USER_KEY = "pixelcut_user";
 
@@ -209,15 +212,18 @@ export default function App() {
             path="/my-activity"
             element={
               currentUser ? (
-                <MyActivityPage
-                  {...pageProps}
-                  user={currentUser}
-                />
+                <MyActivityPage {...pageProps} user={currentUser} />
               ) : (
                 <Navigate to="/login" replace />
               )
             }
           />
+          <Route path="/about" element={<About {...pageProps} />} />
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicyPage {...pageProps} />}
+          />
+          <Route path="/terms" element={<TermsPage {...pageProps} />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Skeleton>

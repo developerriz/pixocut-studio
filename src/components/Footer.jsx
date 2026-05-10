@@ -1,16 +1,21 @@
+import { Link } from "react-router-dom";
 import { FaInstagram } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 
 function Footer() {
   const productLinks = [
-    "BG Remover",
-    "Image Upscaler (Coming Soon)",
-    // "Pricing",
-    // "API",
-    // "Changelog",
+    { label: "BG Remover", href: "/" },
+    { label: "Image Upscaler (Coming Soon)", href: null },
   ];
-  const companyLinks = ["About", "Blog", "Contact"];
-  const bottomLinks = ["Privacy", "Terms"];
+  const companyLinks = [
+    { label: "About", href: "/about" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Features", href: "/features" },
+  ];
+  const bottomLinks = [
+    { label: "Privacy", href: "/privacy-policy" },
+    { label: "Terms", href: "/terms" },
+  ];
 
   const socialIcons = [
     {
@@ -95,23 +100,33 @@ function Footer() {
               Product
             </h4>
             <div className="flex flex-col gap-2.5">
-              {productLinks.map((label) => (
-                <a
-                  key={label}
-                  href="#"
-                  className={linkClass}
-                  style={{ color: "#8B85A8" }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "#F0EEFF")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "#8B85A8")
-                  }
-                >
-                  {label}
-                  <FiArrowRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
-                </a>
-              ))}
+              {productLinks.map((label) =>
+                label.href ? (
+                  <Link
+                    key={label.label}
+                    to={label.href}
+                    className={linkClass}
+                    style={{ color: "#8B85A8" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "#F0EEFF")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "#8B85A8")
+                    }
+                  >
+                    {label.label}
+                    <FiArrowRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                  </Link>
+                ) : (
+                  <span
+                    key={label.label}
+                    className={`${linkClass} cursor-default opacity-70`}
+                    style={{ color: "#8B85A8" }}
+                  >
+                    {label.label}
+                  </span>
+                ),
+              )}
             </div>
           </div>
 
@@ -125,9 +140,9 @@ function Footer() {
             </h4>
             <div className="flex flex-col gap-2.5">
               {companyLinks.map((label) => (
-                <a
-                  key={label}
-                  href="#"
+                <Link
+                  key={label.label}
+                  to={label.href}
                   className={linkClass}
                   style={{ color: "#8B85A8" }}
                   onMouseEnter={(e) =>
@@ -137,9 +152,9 @@ function Footer() {
                     (e.currentTarget.style.color = "#8B85A8")
                   }
                 >
-                  {label}
+                  {label.label}
                   <FiArrowRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -172,6 +187,14 @@ function Footer() {
                 Join
               </button>
             </div>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=Support@toolsbyprabhat.com"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center justify-center rounded-full border border-violet-500/30 bg-white/5 px-5 py-2 text-sm font-semibold text-violet-200 transition-colors hover:border-violet-400/50 hover:bg-violet-500/15 hover:text-white"
+            >
+              Contact Us
+            </a>
             <div
               className="mt-3 flex items-center gap-2 text-xs"
               style={{ color: "#6B6585" }}
@@ -190,15 +213,15 @@ function Footer() {
           <span>© 2026 PixelCut Studio · All rights reserved</span>
           <div className="flex items-center gap-6">
             {bottomLinks.map((item) => (
-              <a
-                key={item}
-                href="#"
+              <Link
+                key={item.label}
+                to={item.href}
                 style={{ color: "#6B6585" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EEFF")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#6B6585")}
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>

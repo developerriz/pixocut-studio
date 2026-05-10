@@ -198,6 +198,11 @@ function UploadZone({ currentUser }) {
                 });
               }
 
+              // 🔥🔥🔥 MAIN FIX (REAL-TIME UPDATE)
+              if (window.refreshStats) {
+                window.refreshStats();
+              }
+
               toast.update(processingToastRef.current, {
                 render: "Background removed successfully 🎉",
                 type: "success",
@@ -304,22 +309,26 @@ function UploadZone({ currentUser }) {
   return (
     <div
       ref={zoneRef}
-      className={`cursor-pointer rounded-[20px] border-2 border-dashed px-8 py-12 text-center transition ${
-        drag
-          ? "border-violet-500/90 bg-violet-500/15"
-          : "border-violet-500/40 bg-[rgba(18,15,40,.5)] hover:border-violet-500/85 hover:bg-indigo-500/10"
+      className={`rounded-[20px] border-2 border-dashed px-8 py-12 text-center transition ${
+        isProcessing
+          ? "cursor-not-allowed border-violet-500/20 bg-[rgba(18,15,40,.3)] opacity-60"
+          : drag
+            ? "cursor-pointer border-violet-500/90 bg-violet-500/15"
+            : "cursor-pointer border-violet-500/40 bg-[rgba(18,15,40,.5)] hover:border-violet-500/85 hover:bg-indigo-500/10"
       }`}
       onDragOver={(event) => {
         event.preventDefault();
-        setDrag(true);
+        if (!isProcessing) setDrag(true);
       }}
       onDragLeave={() => setDrag(false)}
       onDrop={(event) => {
         event.preventDefault();
         setDrag(false);
-        handleFile(event.dataTransfer.files[0]);
+        if (!isProcessing) handleFile(event.dataTransfer.files[0]);
       }}
-      onClick={() => fileInputRef.current?.click()}
+      onClick={() => {
+        if (!isProcessing) fileInputRef.current?.click();
+      }}
     >
       <input
         ref={fileInputRef}
@@ -327,6 +336,7 @@ function UploadZone({ currentUser }) {
         type="file"
         accept="image/*"
         className="hidden"
+        disabled={isProcessing}
         onChange={(event) => handleFile(event.target.files[0])}
       />
 
@@ -383,10 +393,15 @@ function UploadZone({ currentUser }) {
           <div className="flex flex-wrap justify-center gap-2.5">
             <button
               type="button"
-              className="rounded-full border border-violet-500/25 px-[18px] py-3 text-sm font-medium text-[#8B85A8] transition hover:border-violet-400/60 hover:bg-violet-500/10 hover:text-[#F0EEFF]"
+              disabled={isProcessing}
+              className={`rounded-full border border-violet-500/25 px-[18px] py-3 text-sm font-medium transition ${
+                isProcessing
+                  ? "cursor-not-allowed border-violet-500/10 bg-gray-500/5 text-[#8B85A8]/50 opacity-50"
+                  : "text-[#8B85A8] hover:border-violet-400/60 hover:bg-violet-500/10 hover:text-[#F0EEFF]"
+              }`}
               onClick={(event) => {
                 event.stopPropagation();
-                fileInputRef.current?.click();
+                if (!isProcessing) fileInputRef.current?.click();
               }}
             >
               Change image

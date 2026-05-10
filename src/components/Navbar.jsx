@@ -9,13 +9,14 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  // const navItems = ["Features", "Pricing", "Gallery", "API"];
-  const navItems = ["Features", "Gallery"];
+  // navigation items
+  const navItems = ["Features", "Gallery", "About"];
   const routeMap = {
     Home: "/",
     Features: "/features",
     // Pricing: "/pricing",
     Gallery: "/gallery",
+    About: "/about",
     // API: "/api",
   };
 
@@ -71,7 +72,10 @@ function Navbar({ onSignIn, onSignUp, currentUser, onLogout }) {
           onClick={(event) => handleNavClick(event, "Home")}
         >
           <div className="flex h-[34px] w-[34px] items-center justify-center rounded-[9px] font-syne text-base font-extrabold text-white">
-            <img src="https://toolsbyprabhat.com/images/icons/favicon-pixocut.png" alt="" />
+            <img
+              src="https://toolsbyprabhat.com/images/icons/favicon-pixocut.png"
+              alt=""
+            />
           </div>
           <span className="flex items-center gap-2 font-syne text-lg font-extrabold text-[#F0EEFF]">
             <span>

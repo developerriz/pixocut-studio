@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://unemitting-dalilah-inefficaciously.ngrok-free.dev",
-  baseURL: "https://api.toolsbyprabhat.com",
+  baseURL: "https://unemitting-dalilah-inefficaciously.ngrok-free.dev",
+  // baseURL: "https://api.toolsbyprabhat.com",
   headers: {
     withCredentials: true,
-    // "ngrok-skip-browser-warning": "69420", // 🔥 ADD THIS
+    "ngrok-skip-browser-warning": "69420", // 🔥 ADD THIS
     "X-App-Client": "bgremover-frontend-v1",
   },
   // ❌ remove this

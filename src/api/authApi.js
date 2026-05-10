@@ -221,6 +221,17 @@ export const getCurrentUser = async () => {
   const res = await API.get("/api/v1/user");
   return res.data;
 };
+
+// GET BG REMOVE COUNT
+export const getBgRemoveCount = async () => {
+  try {
+    const response = await API.get("/api/v1/bg_remove_count");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching count:", error);
+    return { count: 0 };
+  }
+};
 // LOGIN
 // export const loginUser = async (data) => {
 //   await csrf();
